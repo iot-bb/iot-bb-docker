@@ -1,0 +1,8 @@
+version: '3'
+services:
+  node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    image: registry.gitlab.com/tortechnocom/iot-bb/node:latest
+    restart: always
