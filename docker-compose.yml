@@ -4,5 +4,10 @@ services:
     build:
       context: ./node
       dockerfile: Dockerfile
-    image: registry.gitlab.com/tortechnocom/iot-bb/node:latest
+    image: iotbb/iot-bb-node
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    command: "npm start"
     restart: always
