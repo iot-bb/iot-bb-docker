@@ -1,13 +1,16 @@
 version: '3'
 services:
-  node:
+  rails:
     build:
-      context: ./node
+      context: ./rails
       dockerfile: Dockerfile
-    image: iotbb/iot-bb-node
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    command: "npm start"
+    image: iotbb/iot-bb-rails
+    working_dir: /usr/src/app
+    command: "rails server"
+    restart: always
+  mongo:
+    image: mongo
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 12345789
     restart: always

@@ -1,3 +1,3 @@
-[submodule "node/iot-bb-node"]
-	path = node/iot-bb-node
-	url = git@github.com:tortechnocom/iot-bb-node.git
+[submodule "rails/iot-bb-rails"]
+	path = rails/iot-bb-rails
+	url = git@github.com:tortechnocom/iot-bb-rails.git
