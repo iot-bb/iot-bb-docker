@@ -1,8 +1,11 @@
 FROM ruby:2.5.1
 
-ENV RAILS_VERSION 5.2.0
+ENV APP_HOME /usr/src/app
 
-COPY iot-bb-rails /usr/src/app
-RUN gem install rails --version "$RAILS_VERSION"
+RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+WORKDIR $APP_HOME
+COPY iot-bb-rails $APP_HOME
+RUN bundle install
 
 EXPOSE 3000
