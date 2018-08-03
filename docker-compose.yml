@@ -1,6 +1,7 @@
 version: '3'
 services:
   rails:
+    container_name: iot-bb-rails
     build:
       context: ./rails
       dockerfile: Dockerfile
@@ -9,8 +10,9 @@ services:
     command: "rails server"
     restart: always
   mongo:
-    image: mongo
+    container_name: iot-bb-mongo
+    image: mongo:4
     environment: 
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 12345789
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345789
     restart: always
