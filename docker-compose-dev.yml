@@ -8,6 +8,10 @@ services:
     image: iotbb/iot-bb-rails${TAG}
     ports:
       - "3000:3000"
+    environment:
+      - MONGODB_URI=iot-bb-mongo:27017
+      - MONGODB_USER=root
+      - MONGODB_PASSWORD='12345789'
     working_dir: /usr/src/app
     volumes: 
       - ./rails/iot-bb-rails:/usr/src/app
