@@ -1,22 +1,28 @@
 version: '3'
 services:
-  rails:
-    container_name: iot-bb-rails
+  api:
+    container_name: iot-bb-api
     build:
-      context: ./rails
+      context: ./api
       dockerfile: Dockerfile
-    image: iotbb/iot-bb-rails${TAG}
-    working_dir: /usr/src/app
+    image: iotbb/iot-bb-api${TAG}
     environment:
-      - MONGODB_URI=iot-bb-mongo:27017
-      - MONGODB_USER=root
-      - MONGODB_PASSWORD='12345789'
-    command: "rails server"
+      MONGODB_URI: iot-bb-mongo:27017
+      MONGODB_NAME: iotbb
+      # MONGODB_USER: root
+      # MONGODB_PASSWORD: 12345789
+    depends_on: 
+      - db
+    ports: 
+      - "8080:8080"
     restart: always
-  mongo:
-    container_name: iot-bb-mongo
+  db:
+    container_name: iot-bb-db
     image: mongo:4
-    environment: 
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=12345789
+    # environment: 
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: 12345789
+    #   MONGO_INITDB_DATABASE: iotbb
+    ports: 
+      - "27017:27017"
     restart: always
